@@ -45,12 +45,12 @@ export default function ModalDeleteConfirmation({
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Delete post{" "}
+            Delete post "
             <i>
               <b>{title}</b>
             </i>{" "}
-            ? This action cannot be undone and will also remove all associated
-            data."
+            "? This action cannot be undone and will also remove all associated
+            data.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

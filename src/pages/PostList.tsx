@@ -7,6 +7,7 @@ import { postStore } from "../store/postStore";
 import PostCard from "../components/postCard";
 import SkeletonPost from "../components/skeletons/SkeletonPost";
 import DrawerPost from "../components/drawers/DrawerPost";
+import { ROUTE_LIST } from "../router/routeList";
 
 const BlogPage = observer(() => {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
@@ -14,7 +15,7 @@ const BlogPage = observer(() => {
 
   const handleViewComments = useCallback(
     (id: string | undefined) => {
-      navigate(`/posts/${id}`);
+      navigate(`${ROUTE_LIST.POSTS}/${id}`);
     },
     [navigate]
   );

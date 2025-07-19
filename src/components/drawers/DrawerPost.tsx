@@ -45,7 +45,12 @@ export default function DrawerPost({
   return (
     <>
       <Drawer anchor="right" open={drawerOpen} onClose={handleCancel}>
-        <Box p={2} height="100%" display="flex" flexDirection="column">
+        <Box
+          p={2}
+          height="100%"
+          display="flex"
+          flexDirection="column"
+        >
           <Box display="flex" justifyContent="space-between">
             <Typography variant="h6">{headerTitle}</Typography>
             <IconButton onClick={handleCancel}>

@@ -20,13 +20,13 @@ import {
   DeleteOutlined,
 } from "@mui/icons-material";
 import DrawerPost from "./drawers/DrawerPost";
-import ModalDeleteConfirmation from "./modals/ModalDeleteConfirmation";
+import ModalDeletePostConfirmation from "./modals/ModalDeletePostConfirmation";
 import { Post } from "../models/post";
 
 interface PostCardProps {
   data: Post | null;
   hideActions?: boolean;
-  onViewComments: (id: string | undefined) => void;
+  onViewComments?: (id: string | undefined) => void;
 }
 
 function PostCard({
@@ -145,7 +145,7 @@ function PostCard({
         data={data}
       />
 
-      <ModalDeleteConfirmation
+      <ModalDeletePostConfirmation
         openDialog={openDialog}
         setOpenDialog={setOpenDialog}
         title={data?.title || ""}
