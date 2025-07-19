@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
 import { ReactElement } from 'react';
+import RouterList from './router';
 
-const App = (): ReactElement => <Box>Get started!</Box>;
+const App = (): ReactElement => <RouterList />;
 
 export default App;
