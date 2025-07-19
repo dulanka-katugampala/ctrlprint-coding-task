@@ -12,13 +12,6 @@ import {
   MenuList,
   ListItemText,
   Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Drawer,
-  Box,
 } from "@mui/material";
 import {
   CommentOutlined,
@@ -72,7 +65,7 @@ function PostCard({
 
   return (
     <>
-      <Card sx={{ mb: 2 }}>
+      <Card>
         <CardHeader
           action={
             <IconButton
@@ -86,9 +79,19 @@ function PostCard({
             </IconButton>
           }
           title={data?.title}
+          // using slot props to change the title color
+          slotProps={{
+            title: {
+              sx: {
+                textTransform: "capitalize",
+              },
+            },
+          }}
         />
         <CardContent sx={{ pt: 0 }}>
-          <Typography variant="body2">{data?.body}</Typography>
+          <Typography variant="body2" sx={{ textTransform: "capitalize" }}>
+            {data?.body}
+          </Typography>
         </CardContent>
         {!hideActions && (
           <CardActions>

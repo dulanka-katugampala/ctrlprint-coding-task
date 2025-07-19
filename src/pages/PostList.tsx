@@ -30,15 +30,19 @@ const BlogPage = observer(() => {
   }, [postStore.loading, handleViewComments]);
 
   const postList = useMemo(() => {
-    return postStore.loading
-      ? postListSkeleton
-      : postStore.posts.map((post) => (
+    return postStore.loading ? (
+      postListSkeleton
+    ) : (
+      <Box display="flex" flexDirection="column" gap={3}>
+        {postStore.posts.map((post) => (
           <PostCard
             key={post.id}
             data={post}
             onViewComments={handleViewComments}
           />
-        ));
+        ))}
+      </Box>
+    );
   }, [
     postStore.posts,
     postStore.loading,
@@ -56,7 +60,7 @@ const BlogPage = observer(() => {
 
   return (
     <Box pt={2}>
-      <Box display="flex" justifyContent="flex-end" sx={{ my: 2 }}>
+      <Box display="flex" justifyContent="flex-start" sx={{ my: 2 }}>
         <Button color="primary" onClick={onAddPost}>
           <PostAddOutlined sx={{ mr: 1 }} />
           Add Post
