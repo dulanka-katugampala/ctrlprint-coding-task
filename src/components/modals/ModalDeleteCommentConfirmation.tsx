@@ -66,7 +66,7 @@ export default function ModalDeleteCommentConfirmation({
             onClick={handleDelete}
             autoFocus
             color="error"
-            loading={commentStore.loadingDelete}
+            loading={commentStore.loading.loading}
           >
             Delete
           </Button>

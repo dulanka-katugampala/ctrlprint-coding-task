@@ -26,7 +26,7 @@ const PostById = observer(() => {
       return <PostCard data={postStore.getPostById(id) || null} hideActions />;
     }
     return null;
-  }, [postStore.posts, postStore.loading, postStore.getPostById, id]);
+  }, [postStore.posts, postStore.loading.loading, postStore.getPostById, id]);
 
   const commentsList = useMemo(() => {
     if (id) {
@@ -46,8 +46,8 @@ const PostById = observer(() => {
   ]);
 
   const Loading = useMemo(() => {
-    return commentStore.loading || postStore.loading;
-  }, [commentStore.loading, postStore.loading]);
+    return commentStore.loading.loading || postStore.loading.loading;
+  }, [commentStore.loading.loading, postStore.loading.loading]);
 
   const skeleton = useMemo(() => {
     return (
@@ -70,7 +70,7 @@ const PostById = observer(() => {
         </Box>
       </>
     );
-  }, [commentStore.loading, postStore.loading]);
+  }, [commentStore.loading.loading, postStore.loading.loading]);
 
   useEffect(() => {
     postStore.getPosts();

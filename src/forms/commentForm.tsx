@@ -18,6 +18,7 @@ interface CommentFormProps {
   onSubmit: (data: CommentFormData) => void;
   onCancel?: () => void;
   defaultValues?: CommentFormData | null;
+  loading?: boolean;
 }
 
 const defaultValuesEmpty: CommentFormData = {
@@ -29,6 +30,7 @@ const defaultValuesEmpty: CommentFormData = {
 export function CommentForm({
   onSubmit,
   defaultValues,
+  loading,
   onCancel,
 }: CommentFormProps) {
   const {
@@ -101,7 +103,13 @@ export function CommentForm({
         <Button fullWidth onClick={handleCancel}>
           Cancel
         </Button>
-        <Button fullWidth type="submit" variant="contained" disabled={!isValid}>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          disabled={!isValid}
+          loading={loading}
+        >
           {submitButtonText}
         </Button>
       </Box>

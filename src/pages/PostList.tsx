@@ -28,10 +28,10 @@ const BlogPage = observer(() => {
         ))}
       </Box>
     );
-  }, [postStore.loading, handleViewComments]);
+  }, [postStore.loading.loading, handleViewComments]);
 
   const postList = useMemo(() => {
-    return postStore.loading ? (
+    return postStore.loading.loading ? (
       postListSkeleton
     ) : (
       <Box display="flex" flexDirection="column" gap={3}>
@@ -46,7 +46,7 @@ const BlogPage = observer(() => {
     );
   }, [
     postStore.posts,
-    postStore.loading,
+    postStore.loading.loading,
     postListSkeleton,
     handleViewComments,
   ]);

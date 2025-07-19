@@ -1,26 +1,66 @@
 {
   "posts": [
     {
-      "id": "1",
-      "userId": 1,
-      "title": "a title",
-      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+      "id": "e6a99c5e-5bb9-45d8-8437-ee438739891d",
+      "title": "First Blog Post",
+      "body": "Welcome to the very first blog post on our mini blog! This post serves as an introduction to the platform and gives you a quick overview of what's to come. We’ll explore how React, MobX, and TypeScript come together to build modern web apps.",
+      "userId": 1
+    },
+    {
+      "id": "0e76d321-22a9-4c3d-9e49-4588c01367cf",
+      "title": "React with TypeScriptReact with TypeScript",
+      "body": "React and TypeScript are a powerful combination for building scalable and maintainable frontend applications. In this post, we'll dive into how to type your components properly, use hooks with type safety, and build reusable form components using React Hook Form and Zod.",
+      "userId": 1
+    },
+    {
+      "id": "2c47593a-8bda-4b1b-8adb-1a2bdec4b308",
+      "title": "MobX State Management",
+      "body": "Managing state in large applications can quickly become a headache. MobX offers a reactive and declarative way to handle state updates and side effects. In this article, we'll cover observable state, actions, and how to keep your state management logic clean and modular.",
+      "userId": 1
     }
   ],
   "comments": [
     {
-      "id": "1",
-      "email": "Eliseo@gardner.biz",
-      "name": "id labore ex et quam laborum",
-      "body": "a comment about post 1",
-      "postId": "1"
+      "id": "2434ea41-29a4-4f4e-9425-8ef7ccb08dc1",
+      "email": "alice@example.com",
+      "name": "Alice",
+      "body": "Great post! Looking forward to more insights on React and MobX.",
+      "postId": "e6a99c5e-5bb9-45d8-8437-ee438739891d"
     },
     {
-      "id": "2",
-      "email": "Jayne_Kuhic@sydney.com",
-      "name": "quo vero reiciendis velit similique earum",
-      "body": "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et",
-      "postId": "1"
+      "id": "8290c560-9bc2-4e75-aab1-6dd4c3aad517",
+      "email": "bob@example.com",
+      "name": "Bob",
+      "body": "Thanks for the introduction. It's always good to start with a solid foundation!",
+      "postId": "e6a99c5e-5bb9-45d8-8437-ee438739891d"
+    },
+    {
+      "id": "ec8a2362-bfe9-4f27-9717-23a731fa0f62",
+      "email": "charlie@example.com",
+      "name": "Charlie",
+      "body": "This was super helpful. I'd love a follow-up post on custom hook patterns with TypeScript!",
+      "postId": "0e76d321-22a9-4c3d-9e49-4588c01367cf"
+    },
+    {
+      "id": "e6dd59a6-aff3-4ec8-b9dd-ee3f1234550b",
+      "email": "dana@example.com",
+      "name": "Dana",
+      "body": "MobX feels like magic after using Redux. Appreciate the examples provided here.",
+      "postId": "0e76d321-22a9-4c3d-9e49-4588c01367cf"
+    },
+    {
+      "id": "d9ef4221-2e9d-4ec8-849d-beb80f3dfc08",
+      "email": "eve@example.com",
+      "name": "Eve",
+      "body": "Really liked the TypeScript tips! The section on form validation with Zod was spot on.",
+      "postId": "2c47593a-8bda-4b1b-8adb-1a2bdec4b308"
+    },
+    {
+      "id": "74da0756-f85c-4baf-8f64-7ae9f60bb6b4",
+      "email": "frank@example.com",
+      "name": "Frank",
+      "body": "I never understood MobX before, but this post made it click. Thanks for the clarity!",
+      "postId": "2c47593a-8bda-4b1b-8adb-1a2bdec4b308"
     }
   ]
 }

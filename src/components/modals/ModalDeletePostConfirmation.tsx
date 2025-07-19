@@ -59,7 +59,7 @@ export default function ModalDeleteConfirmation({
             onClick={handleDelete}
             autoFocus
             color="error"
-            loading={postStore.loadingDelete}
+            loading={postStore.loading.loading}
           >
             Delete
           </Button>

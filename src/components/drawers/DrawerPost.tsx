@@ -59,7 +59,7 @@ export default function DrawerPost({
           </Box>
           <Box flexGrow={1}>
             <PostForm
-              loading={postStore.loadingCreate}
+              loading={postStore.loading.loading}
               onSubmit={handleSubmit}
               onCancel={handleCancel}
               defaultValues={data}

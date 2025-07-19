@@ -1,20 +1,20 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { Post } from '../models/post';
 import { getPosts, createPost, deletePost, editPost } from '../api/post';
+import { ErrorState, LoadingState } from './types';
 
 class PostStore {
     posts: Post[] = [];
-    loading: boolean = false;
-    loadingCreate: boolean = false;
-    loadingDelete: boolean = false;
-    loadingEdit: boolean = false;
+    loading: LoadingState = { loading: false, operation: null };
+    error: ErrorState = { error: false, operation: null };
 
     constructor() {
         makeAutoObservable(this);
     }
 
     async getPosts() {
-        this.loading = true;
+        this.loading.loading = true;
+        this.loading.operation = "get";
         try {
             const res = await getPosts();
             runInAction(() => {
@@ -22,9 +22,11 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
+            this.error.error = true;
+            this.error.operation = "get";
         } finally {
             runInAction(() => {
-                this.loading = false;
+                this.loading.loading = false;
             });
         }
     }
@@ -34,7 +36,8 @@ class PostStore {
     }
 
     async add(data: Omit<Post, 'id'>) {
-        this.loadingCreate = true;
+        this.loading.loading = true;
+        this.loading.operation = "add";
         try {
             const payload = {
                 ...data,
@@ -46,15 +49,18 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
+            this.error.error = true;
+            this.error.operation = "add";
         } finally {
             runInAction(() => {
-                this.loadingCreate = false;
+                this.loading.loading = false;
             });
         }
     }
 
     async edit(id: string, data: Omit<Post, 'id'>) {
-        this.loadingEdit = true;
+        this.loading.loading = true;
+        this.loading.operation = "edit";
         try {
             const res = await editPost(id, data);
             runInAction(() => {
@@ -62,15 +68,18 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
+            this.error.error = true;
+            this.error.operation = "edit";
         } finally {
             runInAction(() => {
-                this.loadingEdit = false;
+                this.loading.loading = false;
             });
         }
     }
 
     async deletePost(id: string) {
-        this.loadingDelete = true;
+        this.loading.loading = true;
+        this.loading.operation = "delete";
         try {
             await deletePost(id);
             runInAction(() => {
@@ -78,9 +87,11 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
+            this.error.error = true;
+            this.error.operation = "delete";
         } finally {
             runInAction(() => {
-                this.loadingDelete = false;
+                this.loading.loading = false;
             });
         }
     }

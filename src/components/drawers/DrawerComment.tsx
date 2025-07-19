@@ -43,12 +43,7 @@ export default function DrawerComment({
   return (
     <>
       <Drawer anchor="right" open={drawerOpen} onClose={handleCancel}>
-        <Box
-          p={2}
-          height="100%"
-          display="flex"
-          flexDirection="column"
-        >
+        <Box p={2} height="100%" display="flex" flexDirection="column">
           <Box display="flex" justifyContent="space-between">
             <Typography variant="h6">{headerTitle}</Typography>
             <IconButton onClick={handleCancel}>
@@ -56,7 +51,12 @@ export default function DrawerComment({
             </IconButton>
           </Box>
           <Box flexGrow={1}>
-            <CommentForm onSubmit={handleSubmit} onCancel={handleCancel} defaultValues={data} />
+            <CommentForm
+              loading={commentStore.loading.loading}
+              onSubmit={handleSubmit}
+              onCancel={handleCancel}
+              defaultValues={data}
+            />
           </Box>
         </Box>
       </Drawer>
