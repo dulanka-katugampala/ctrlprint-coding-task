@@ -29,7 +29,7 @@ class CommentStore {
         }
     }
 
-    async getCommentsByPostId(postId: string) {
+    getCommentsByPostId(postId: string) {
         return this.comments.filter(p => p.postId === postId);
     }
 
@@ -38,11 +38,11 @@ class CommentStore {
         try {
             const payload = {
                 ...data,
-                id: Date.now().toString(),
+                id: crypto.randomUUID(),
             }
             const res = await createComment(payload);
             runInAction(() => {
-                this.comments.push(res);
+                this.comments = [...this.comments, res];
             });
         } catch (error) {
             console.error(error);
@@ -53,7 +53,7 @@ class CommentStore {
         }
     }
 
-    async edit(id: string, data: Comment) {
+    async edit(id: string, data: Omit<Comment, 'id'>) {
         this.loadingEdit = true;
         try {
             const res = await editComment(id, data);
@@ -69,7 +69,7 @@ class CommentStore {
         }
     }
 
-    async deleteComment(id: string) {
+    async delete(id: string) {
         this.loadingDelete = true;
         try {
             await deleteComment(id);

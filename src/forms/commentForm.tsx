@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Box, Button, TextField } from "@mui/material";
+import { useCallback, useMemo } from "react";
 
 const commentSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email format"),
@@ -12,11 +13,11 @@ const commentSchema = z.object({
   body: z.string().min(1, "Comment is required"),
 });
 
-type CommentFormData = z.infer<typeof commentSchema>;
-
+export type CommentFormData = z.infer<typeof commentSchema>;
 interface CommentFormProps {
   onSubmit: (data: CommentFormData) => void;
-  defaultValues?: CommentFormData;
+  onCancel?: () => void;
+  defaultValues?: CommentFormData | null;
 }
 
 const defaultValuesEmpty: CommentFormData = {
@@ -25,9 +26,14 @@ const defaultValuesEmpty: CommentFormData = {
   body: "",
 };
 
-export function CommentForm({ onSubmit, defaultValues }: CommentFormProps) {
+export function CommentForm({
+  onSubmit,
+  defaultValues,
+  onCancel,
+}: CommentFormProps) {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<CommentFormData>({
@@ -36,38 +42,69 @@ export function CommentForm({ onSubmit, defaultValues }: CommentFormProps) {
     defaultValues: defaultValues || defaultValuesEmpty,
   });
 
+  const handleCancel = useCallback(() => {
+    reset();
+    onCancel?.();
+  }, [reset, onCancel]);
+
+  const handleOnSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      handleSubmit(onSubmit)(e);
+    },
+    [handleSubmit, onSubmit]
+  );
+
+  const submitButtonText = useMemo(
+    () => (defaultValues ? "Edit Comment" : "Add Comment"),
+    [defaultValues]
+  );
+
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mb: 4 }}>
-      <TextField
-        label="Email"
-        type="email"
-        fullWidth
-        error={!!errors.email}
-        helperText={errors.email?.message}
-        margin="normal"
-        {...register("email")}
-      />
-      <TextField
-        label="Name"
-        fullWidth
-        error={!!errors.name}
-        helperText={errors.name?.message}
-        margin="normal"
-        {...register("name")}
-      />
-      <TextField
-        label="Comment"
-        fullWidth
-        error={!!errors.body}
-        helperText={errors.body?.message}
-        multiline
-        rows={4}
-        margin="normal"
-        {...register("body")}
-      />
-      <Button type="submit" variant="contained" disabled={!isValid}>
-        Add Comment
-      </Button>
+    <Box
+      component="form"
+      display="flex"
+      height="100%"
+      flexDirection="column"
+      onSubmit={handleOnSubmit}
+    >
+      <Box flexGrow={1}>
+        <TextField
+          label="Email"
+          type="email"
+          fullWidth
+          error={!!errors.email}
+          helperText={errors.email?.message}
+          margin="normal"
+          {...register("email")}
+        />
+        <TextField
+          label="Name"
+          fullWidth
+          error={!!errors.name}
+          helperText={errors.name?.message}
+          margin="normal"
+          {...register("name")}
+        />
+        <TextField
+          label="Comment"
+          fullWidth
+          error={!!errors.body}
+          helperText={errors.body?.message}
+          multiline
+          rows={4}
+          margin="normal"
+          {...register("body")}
+        />
+      </Box>
+      <Box display="flex" justifyContent="flex-end" gap={2}>
+        <Button fullWidth onClick={handleCancel}>
+          Cancel
+        </Button>
+        <Button fullWidth type="submit" variant="contained" disabled={!isValid}>
+          {submitButtonText}
+        </Button>
+      </Box>
     </Box>
   );
 }

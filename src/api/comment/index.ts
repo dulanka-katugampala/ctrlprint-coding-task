@@ -11,7 +11,7 @@ export const createComment = async (payload: Comment): Promise<Comment> => {
     return response.data;
 };
 
-export const editComment = async (id: string, payload: Comment): Promise<Comment> => {
+export const editComment = async (id: string, payload: Omit<Comment, 'id'>): Promise<Comment> => {
     const response = await axiosClient.put<Comment>(`/comments/${id}`, payload);
     return response.data;
 };
