@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "userId": 1,
+      "title": "a title",
+      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "email": "Eliseo@gardner.biz",
+      "name": "id labore ex et quam laborum",
+      "body": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "email": "Jayne_Kuhic@sydney.com",
+      "name": "quo vero reiciendis velit similique earum",
+      "body": "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et",
+      "postId": "1"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+import { Post } from '../../models/post';
+// implement all necessary api functions below
+// e.g. getPosts...

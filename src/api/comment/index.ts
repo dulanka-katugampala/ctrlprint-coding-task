@@ -1,0 +1,3 @@
+import { Comment } from '../../models/comment';
+// implement all necessary api functions below
+// e.g. getComments...
