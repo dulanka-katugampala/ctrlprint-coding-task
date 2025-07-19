@@ -38,11 +38,11 @@ class PostStore {
         try {
             const payload = {
                 ...data,
-                id: Date.now().toString(),
+                id: crypto.randomUUID(),
             }
             const res = await createPost(payload);
             runInAction(() => {
-                this.posts.push(res);
+                this.posts = [...this.posts, res];
             });
         } catch (error) {
             console.error(error);
@@ -53,7 +53,7 @@ class PostStore {
         }
     }
 
-    async edit(id: string, data: Post) {
+    async edit(id: string, data: Omit<Post, 'id'>) {
         this.loadingEdit = true;
         try {
             const res = await editPost(id, data);
@@ -72,7 +72,7 @@ class PostStore {
     async deletePost(id: string) {
         this.loadingDelete = true;
         try {
-            await deletePost(`http://localhost:3000/posts/${id}`);
+            await deletePost(id);
             runInAction(() => {
                 this.posts = this.posts.filter(post => post.id !== id);
             });
