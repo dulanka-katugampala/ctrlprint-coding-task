@@ -1,20 +1,8 @@
 import { Comment } from '../../models/comment';
 import { axiosClient } from '../axiosClient';
-// implement all necessary api functions below
-// e.g. getComments...
 
 export const getComments = async (): Promise<Comment[]> => {
     const response = await axiosClient.get<Comment[]>('/comments');
-    return response.data;
-};
-
-export const getComment = async (id: string): Promise<Comment> => {
-    const response = await axiosClient.get<Comment>(`/comments/${id}`);
-    return response.data;
-};
-
-export const getCommentsByPostId = async (postId: string): Promise<Comment[]> => {
-    const response = await axiosClient.get<Comment[]>(`/comments?postId=${postId}`);
     return response.data;
 };
 
