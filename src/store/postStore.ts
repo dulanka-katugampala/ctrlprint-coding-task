@@ -1,12 +1,11 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { Post } from '../models/post';
 import { getPosts, createPost, deletePost, editPost } from '../api/post';
-import { ErrorState, LoadingState } from './types';
+import { LoadingState } from '../models/types';
 
 class PostStore {
     posts: Post[] = [];
     loading: LoadingState = { loading: false, operation: null };
-    error: ErrorState = { error: false, operation: null };
 
     constructor() {
         makeAutoObservable(this);
@@ -22,8 +21,6 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "get";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
@@ -49,8 +46,6 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "add";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
@@ -68,8 +63,6 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "edit";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
@@ -87,8 +80,6 @@ class PostStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "delete";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;

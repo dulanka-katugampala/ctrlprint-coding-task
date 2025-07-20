@@ -1,12 +1,11 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import { Comment } from '../models/comment';
 import { getComments, createComment, editComment, deleteComment } from '../api/comment';
-import { ErrorState, LoadingState } from './types';
+import { LoadingState } from '../models/types';
 
 class CommentStore {
     comments: Comment[] = [];
     loading: LoadingState = { loading: false, operation: null };
-    error: ErrorState = { error: false, operation: null };
 
     constructor() {
         makeAutoObservable(this);
@@ -22,8 +21,6 @@ class CommentStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "get";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
@@ -49,8 +46,6 @@ class CommentStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "add";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
@@ -68,8 +63,6 @@ class CommentStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "edit";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
@@ -87,8 +80,6 @@ class CommentStore {
             });
         } catch (error) {
             console.error(error);
-            this.error.error = true;
-            this.error.operation = "delete";
         } finally {
             runInAction(() => {
                 this.loading.loading = false;
